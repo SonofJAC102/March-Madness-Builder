@@ -81,7 +81,6 @@ export default function Home() {
 }
 
 function Region({ region, winners, setWinners, setSelectedTeam, direction = "right" }) {
-
   const matchups = [
     [1,16],[8,9],[5,12],[4,13],
     [6,11],[3,14],[7,10],[2,15]
@@ -103,6 +102,98 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
     if (a && b) r3.push([a,b]);
   }
 
+  const r4 = [];
+  for (let i = 0; i < r3.length; i += 2) {
+    const a = winners[`${region.name}-r3-${i}`];
+    const b = winners[`${region.name}-r3-${i+1}`];
+    if (a && b) r4.push([a,b]);
+  }
+
+  const columnBase = "flex flex-col items-center";
+  const flow = direction === "left" ? "flex-row-reverse" : "";
+
+  return (
+    <div className="px-6 mb-24">
+
+      <h2 className="text-xl font-bold mb-12 text-center">
+        {region.name} — {region.location}
+      </h2>
+
+      <div className={`flex gap-32 ${flow}`}>
+
+        {/* ROUND 1 */}
+        <div className={`${columnBase} gap-6`}>
+          {matchups.map(([seedA, seedB]) => {
+            const key = `${region.name}-r1-${seedA}`;
+            return (
+              <GameCard
+                key={key}
+                gameKey={key}
+                teamA={{
+                  name: getTeamName(region.seeds[seedA]),
+                  seed: seedA
+                }}
+                teamB={{
+                  name: getTeamName(region.seeds[seedB]),
+                  seed: seedB
+                }}
+                winners={winners}
+                setWinners={setWinners}
+                setSelectedTeam={setSelectedTeam}
+              />
+            );
+          })}
+        </div>
+
+        {/* ROUND 2 */}
+        <div className={`${columnBase} justify-around`} style={{ height: "100%" }}>
+          {r2.map((pair, index) => (
+            <GameCard
+              key={`${region.name}-r2-${index}`}
+              gameKey={`${region.name}-r2-${index}`}
+              teamA={pair[0]}
+              teamB={pair[1]}
+              winners={winners}
+              setWinners={setWinners}
+              setSelectedTeam={setSelectedTeam}
+            />
+          ))}
+        </div>
+
+        {/* SWEET 16 */}
+        <div className={`${columnBase} justify-around`}>
+          {r3.map((pair, index) => (
+            <GameCard
+              key={`${region.name}-r3-${index}`}
+              gameKey={`${region.name}-r3-${index}`}
+              teamA={pair[0]}
+              teamB={pair[1]}
+              winners={winners}
+              setWinners={setWinners}
+              setSelectedTeam={setSelectedTeam}
+            />
+          ))}
+        </div>
+
+        {/* ELITE 8 */}
+        <div className={`${columnBase} justify-center`}>
+          {r4.map((pair, index) => (
+            <GameCard
+              key={`${region.name}-r4-${index}`}
+              gameKey={`${region.name}-r4-${index}`}
+              teamA={pair[0]}
+              teamB={pair[1]}
+              winners={winners}
+              setWinners={setWinners}
+              setSelectedTeam={setSelectedTeam}
+            />
+          ))}
+        </div>
+
+      </div>
+    </div>
+  );
+}
   let r4 = [];
 if (r3.length === 2) {
   const a = winners[`${region.name}-r3-0`];

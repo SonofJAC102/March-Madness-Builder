@@ -28,7 +28,7 @@ export default function Home() {
         🏀 2026 March Madness Builder
       </h1>
 
-      <div className="min-w-[1800px] flex justify-between items-start gap-20">
+      <div className="min-w-[2000px] flex justify-center gap-32">
 
         {/* LEFT SIDE */}
         <div className="flex flex-col gap-24 w-[650px]">

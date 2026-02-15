@@ -1,0 +1,104 @@
+{
+  "regions": [
+    {
+      "name": "West",
+      "location": "San Jose",
+      "seeds": {
+        "1": { "team": "Arizona" },
+        "16": { "team": "Harvard" },
+        "8": { "team": "Texas A&M" },
+        "9": { "team": "SMU" },
+        "5": { "team": "Alabama" },
+        "12": { "team": "South Florida" },
+        "4": { "team": "Gonzaga" },
+        "13": { "team": "CA Baptist" },
+        "6": { "team": "Clemson" },
+        "11": { "team": "Miami OH" },
+        "3": { "team": "Florida" },
+        "14": { "team": "Winthrop" },
+        "7": { "team": "Utah State" },
+        "10": { "team": "USC" },
+        "2": { "team": "Nebraska" },
+        "15": { "team": "Merrimack" }
+      }
+    },
+    {
+      "name": "Midwest",
+      "location": "Chicago",
+      "seeds": {
+        "1": { "team": "Michigan" },
+        "16": {
+          "playIn": true,
+          "teams": ["NJIT", "Morgan St"]
+        },
+        "8": { "team": "Auburn" },
+        "9": { "team": "UCF" },
+        "5": { "team": "St John's" },
+        "12": { "team": "Belmont" },
+        "4": { "team": "North Carolina" },
+        "13": { "team": "Troy" },
+        "6": { "team": "Arkansas" },
+        "11": {
+          "playIn": true,
+          "teams": ["Miami", "New Mexico"]
+        },
+        "3": { "team": "Michigan St" },
+        "14": { "team": "N Dakota St" },
+        "7": { "team": "Kentucky" },
+        "10": { "team": "UCLA" },
+        "2": { "team": "Iowa State" },
+        "15": { "team": "Austin Peay" }
+      }
+    },
+    {
+      "name": "South",
+      "location": "Houston",
+      "seeds": {
+        "1": { "team": "UConn" },
+        "16": {
+          "playIn": true,
+          "teams": ["Long Island", "B-CU"]
+        },
+        "8": { "team": "NC State" },
+        "9": { "team": "Wisconsin" },
+        "5": { "team": "Tennessee" },
+        "12": { "team": "SF Austin" },
+        "4": { "team": "Virginia" },
+        "13": { "team": "UNC Wilmington" },
+        "6": { "team": "BYU" },
+        "11": {
+          "playIn": true,
+          "teams": ["Texas", "San Diego St"]
+        },
+        "3": { "team": "Purdue" },
+        "14": { "team": "Portland St" },
+        "7": { "team": "Iowa" },
+        "10": { "team": "Saint Mary's" },
+        "2": { "team": "Georgia" },
+        "15": { "team": "USC" }
+      }
+    },
+    {
+      "name": "East",
+      "location": "Washington DC",
+      "seeds": {
+        "1": { "team": "Duke" },
+        "16": { "team": "UT Martin" },
+        "8": { "team": "Villanova" },
+        "9": { "team": "Indiana" },
+        "5": { "team": "Vanderbilt" },
+        "12": { "team": "Liberty" },
+        "4": { "team": "Texas Tech" },
+        "13": { "team": "Hawai'i" },
+        "6": { "team": "Louisville" },
+        "11": { "team": "Santa Clara" },
+        "3": { "team": "Kansas" },
+        "14": { "team": "ETSU" },
+        "7": { "team": "Saint Louis" },
+        "10": { "team": "Georgia" },
+        "2": { "team": "Iowa State" },
+        "15": { "team": "Austin Peay" }
+      }
+    }
+  ]
+}

@@ -30,10 +30,10 @@ export default function Home() {
 
       <div className="min-w-[2000px] flex justify-center gap-32">
 
-        {/* LEFT */}
+        {/* LEFT SIDE */}
         <div className="flex flex-col gap-24 w-[650px]">
-          <Region region={bracketData.regions[0]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
-          <Region region={bracketData.regions[1]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
+          <Region region={bracketData.regions[0]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
+          <Region region={bracketData.regions[1]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
         </div>
 
         {/* CENTER */}
@@ -42,13 +42,13 @@ export default function Home() {
             <div className="bg-white p-8 rounded-2xl shadow-2xl w-full text-center">
               <h2 className="text-2xl font-bold mb-8">Final Four</h2>
 
-              <GameCard gameKey="finalfour-1" teamA={regionChampions[0]} teamB={regionChampions[1]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
-              <GameCard gameKey="finalfour-2" teamA={regionChampions[2]} teamB={regionChampions[3]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
+              <GameCard gameKey="finalfour-1" teamA={regionChampions[0]} teamB={regionChampions[1]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
+              <GameCard gameKey="finalfour-2" teamA={regionChampions[2]} teamB={regionChampions[3]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
 
               {championshipReady && (
                 <>
                   <h3 className="text-xl font-semibold mt-10 mb-4">Championship</h3>
-                  <GameCard gameKey="championship" teamA={semifinalWinners[0]} teamB={semifinalWinners[1]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
+                  <GameCard gameKey="championship" teamA={semifinalWinners[0]} teamB={semifinalWinners[1]} winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
                 </>
               )}
 
@@ -61,10 +61,10 @@ export default function Home() {
           )}
         </div>
 
-        {/* RIGHT */}
+        {/* RIGHT SIDE */}
         <div className="flex flex-col gap-24 w-[650px]">
-          <Region region={bracketData.regions[2]} direction="left" winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
-          <Region region={bracketData.regions[3]} direction="left" winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam}/>
+          <Region region={bracketData.regions[2]} direction="left" winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
+          <Region region={bracketData.regions[3]} direction="left" winners={winners} setWinners={setWinners} setSelectedTeam={setSelectedTeam} />
         </div>
 
       </div>
@@ -107,10 +107,11 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
   if (r3.length === 2) {
     const a = winners[`${region.name}-r3-0`];
     const b = winners[`${region.name}-r3-1`];
-    if (a && b) r4 = [[a,b]];
+    if (a && b) {
+      r4 = [[a,b]];
+    }
   }
 
-  const column = "flex flex-col items-center";
   const flow = direction === "left" ? "flex-row-reverse" : "";
 
   return (
@@ -123,7 +124,7 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
       <div className={`flex gap-32 ${flow}`}>
 
         {/* ROUND 1 */}
-        <div className={`${column} gap-6`}>
+        <div className="flex flex-col gap-6">
           {matchups.map(([seedA, seedB]) => {
             const key = `${region.name}-r1-${seedA}`;
             return (
@@ -141,7 +142,7 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
         </div>
 
         {/* ROUND 2 */}
-        <div className={`${column} justify-around`}>
+        <div className="flex flex-col justify-around">
           {r2.map((pair, i) => (
             <GameCard
               key={`${region.name}-r2-${i}`}
@@ -156,7 +157,7 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
         </div>
 
         {/* SWEET 16 */}
-        <div className={`${column} justify-around`}>
+        <div className="flex flex-col justify-around">
           {r3.map((pair, i) => (
             <GameCard
               key={`${region.name}-r3-${i}`}
@@ -171,7 +172,7 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
         </div>
 
         {/* ELITE 8 */}
-        <div className={`${column} justify-center`}>
+        <div className="flex flex-col justify-center">
           {r4.map((pair, i) => (
             <GameCard
               key={`${region.name}-r4-${i}`}
@@ -191,6 +192,7 @@ function Region({ region, winners, setWinners, setSelectedTeam, direction = "rig
 }
 
 function GameCard({ gameKey, teamA, teamB, winners, setWinners, setSelectedTeam }) {
+
   const selected = winners[gameKey];
 
   const Row = ({ team }) => {
@@ -206,7 +208,9 @@ function GameCard({ gameKey, teamA, teamB, winners, setWinners, setSelectedTeam 
         }`}
       >
         <div className="flex items-center gap-2">
-          <span className="w-5 text-xs font-bold text-gray-500">{team.seed}</span>
+          <span className="w-5 text-xs font-bold text-gray-500">
+            {team.seed}
+          </span>
           <span onClick={(e)=>{e.stopPropagation(); setSelectedTeam(team.name);}}>
             {team.name}
           </span>
@@ -252,7 +256,10 @@ function TeamModal({ teamName, ratings, onClose }) {
         <span>{value}</span>
       </div>
       <div className="bg-gray-200 h-3 rounded">
-        <div className={`${color} h-3 rounded transition-all duration-700`} style={{ width: `${value}%` }}/>
+        <div
+          className={`${color} h-3 rounded transition-all duration-700`}
+          style={{ width: `${value}%` }}
+        />
       </div>
     </div>
   );
@@ -260,18 +267,22 @@ function TeamModal({ teamName, ratings, onClose }) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
       <div className="bg-white w-[600px] p-8 rounded-2xl shadow-2xl relative">
-        <button className="absolute top-4 right-5 text-xl font-bold" onClick={onClose}>✕</button>
+
+        <button className="absolute top-4 right-5 text-xl font-bold" onClick={onClose}>
+          ✕
+        </button>
 
         <h2 className="text-3xl font-bold mb-2">{teamName}</h2>
         <p className="text-gray-500 mb-6">
           Seed {ratings.seed} • Record {ratings.record}
         </p>
 
-        <StatBar label="Overall Power" value={powerScore} color="bg-blue-600"/>
-        <StatBar label="Offense" value={ratings.offense} color="bg-green-500"/>
-        <StatBar label="Defense" value={ratings.defense} color="bg-red-500"/>
-        <StatBar label="Strength of Schedule" value={ratings.strengthOfSchedule} color="bg-purple-500"/>
-        <StatBar label="Upset Vulnerability" value={upsetRisk} color="bg-yellow-500"/>
+        <StatBar label="Overall Power" value={powerScore} color="bg-blue-600" />
+        <StatBar label="Offense" value={ratings.offense} color="bg-green-500" />
+        <StatBar label="Defense" value={ratings.defense} color="bg-red-500" />
+        <StatBar label="Strength of Schedule" value={ratings.strengthOfSchedule} color="bg-purple-500" />
+        <StatBar label="Upset Vulnerability" value={upsetRisk} color="bg-yellow-500" />
+
       </div>
     </div>
   );
